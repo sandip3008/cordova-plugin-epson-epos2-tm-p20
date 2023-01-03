@@ -27,6 +27,7 @@ static NSDictionary *levelMap;
     printerTypeMap = @{
         @"TM-M10":    [NSNumber numberWithInt:EPOS2_TM_M10],
         @"TM-M30":    [NSNumber numberWithInt:EPOS2_TM_M30],
+        @"TM-m30II":  [NSNumber numberWithInt:EPOS2_TM_M30II],
         @"TM-P20":    [NSNumber numberWithInt:EPOS2_TM_P20],
         @"TM-P60":    [NSNumber numberWithInt:EPOS2_TM_P60],
         @"TM-P60II":  [NSNumber numberWithInt:EPOS2_TM_P60II],
