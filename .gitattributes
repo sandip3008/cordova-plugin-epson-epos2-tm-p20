@@ -1,4 +1,5 @@
-src/ios/libepos2.a filter=lfs diff=lfs merge=lfs -text
+src/ios/libepos2_real_device.a filter=lfs diff=lfs merge=lfs -text
+src/ios/libepos2_simulator.a filter=lfs diff=lfs merge=lfs -text
 src/android/armeabi-v7a/libeposeasyselect.so filter=lfs diff=lfs merge=lfs -text
 src/android/armeabi/libepos2.so filter=lfs diff=lfs merge=lfs -text
 src/android/x86/libeposeasyselect.so filter=lfs diff=lfs merge=lfs -text
