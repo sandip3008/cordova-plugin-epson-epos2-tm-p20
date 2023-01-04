@@ -76,7 +76,7 @@
       <header-file src="src/ios/epos2Plugin.h" />
       <source-file src="src/ios/epos2Plugin.m" />
 
-      <framework src="src/ios/libepos2.framework" custom="true"/>
+      <framework src="src/ios/libepos2.xcframework" custom="true"/>
       
       <framework src="libxml2.2.dylib" framework="true" />
       <framework src="ExternalAccessory.framework" framework="true" />
