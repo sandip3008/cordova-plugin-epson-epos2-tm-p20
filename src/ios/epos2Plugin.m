@@ -663,14 +663,14 @@ static NSDictionary *levelMap;
         printerStatus = [printer getStatus];
     }
 
-    if (![self isPrintable:printerStatus]) {
+    /*if (![self isPrintable:printerStatus]) {
         [printer clearCommandBuffer];
         printerStatus = nil;
 
         CDVPluginResult *cordovaResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Error 0x00050: Printer is not ready. Check device and paper."];
         [self.commandDelegate sendPluginResult:cordovaResult callbackId:command.callbackId];
         return;
-    }
+    }*/
     
     [self.commandDelegate runInBackground:^{
         int result = EPOS2_SUCCESS;
