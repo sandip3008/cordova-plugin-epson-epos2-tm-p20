@@ -226,6 +226,7 @@ static NSDictionary *levelMap;
     }
     
     int result = EPOS2_SUCCESS;
+    printerSeries = EPOS2_TM_M30;
     
     // select BT device from accessory list
     if ([target length] == 0) {
@@ -400,7 +401,7 @@ static NSDictionary *levelMap;
 
         if (result == EPOS2_SUCCESS) {
             result = [self->printer addTextLang:self->textLang];
-        }       
+        }
 
         if (result == EPOS2_SUCCESS) {
             result = [self->printer addTextSize:textSize height:textSize];
@@ -498,7 +499,7 @@ static NSDictionary *levelMap;
     int hriPosition = 0;
     int hriFont = 0;
     long bWidth = 2;
-    long bHeight = 70;    
+    long bHeight = 70;
     
     if ([command.arguments count] > 2) {
         hriPosition = ((NSNumber *)[command.arguments objectAtIndex:2]).intValue;
@@ -581,13 +582,13 @@ static NSDictionary *levelMap;
         CDVPluginResult *cordovaResult;
         
         result = [printer addImage:image x:0 y:0
-                             width:image.size.width
+                            width:image.size.width
                             height:image.size.height
-                             color:EPOS2_COLOR_1
-                              mode:printMode
-                          halftone:halfTone
-                        brightness:EPOS2_PARAM_DEFAULT
-                          compress:EPOS2_COMPRESS_AUTO];
+                            color:EPOS2_COLOR_1
+                            mode:printMode
+                            halftone:halfTone
+                            brightness:EPOS2_PARAM_DEFAULT
+                            compress:EPOS2_COMPRESS_AUTO];
         if (result != EPOS2_SUCCESS) {
             NSLog(@"[epos2] Error in Epos2Printer.addImage(): %d", result);
             cordovaResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Error 0x00040: Failed to add image data"];
@@ -684,19 +685,21 @@ static NSDictionary *levelMap;
         }
         
         // send cut command
-        result = [printer addCut:EPOS2_CUT_FEED];
+        result = [self->printer addCut:EPOS2_CUT_FEED];
         if (result != EPOS2_SUCCESS) {
             NSLog(@"[epos2] Error in Epos2Printer.addCut(): %d", result);
             return;
         }
         
-        result = [printer sendData:EPOS2_PARAM_DEFAULT];
+        result = [self->printer sendData:EPOS2_PARAM_DEFAULT];
         if (result != EPOS2_SUCCESS) {
-            [printer disconnect];
+            [printer clearCommandBuffer];
+            [self->printer disconnect];
             [self finalizeObject];
             cordovaResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Error 0x00051: Failed to send print job"];
             [self.commandDelegate sendPluginResult:cordovaResult callbackId:sendDataCallbackId];
-        } else {
+        }
+        else {
             [printer clearCommandBuffer];
         }
       
