@@ -229,7 +229,8 @@ static NSDictionary *levelMap;
     printerSeries = EPOS2_TM_M30;
     
     // select BT device from accessory list
-    if ([target length] == 0) {
+    // if ([target length] == 0) {
+    if ([target  isEqual: @"findBluetooth"]) {
         Epos2BluetoothConnection *btConnection = [[Epos2BluetoothConnection alloc] init];
         NSMutableString *BDAddress = [[NSMutableString alloc] init];
         result = [btConnection connectDevice:BDAddress];
