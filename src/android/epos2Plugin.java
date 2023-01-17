@@ -614,25 +614,25 @@ public class epos2Plugin extends CordovaPlugin {
         sendDataCallbackContext = callbackContext;
 
         // check printer status (cached)
-        PrinterStatusInfo status = printer.getStatus();
+        // PrinterStatusInfo status = printer.getStatus();
 
-        if (!isPrintable(status)) {
-            callbackContext.error("Error 0x00050: Printer is not ready. Check device and paper.");
-            Log.e(TAG, "Error printing: printer is not printable");
+        // if (!isPrintable(status)) {
+        //     callbackContext.error("Error 0x00050: Printer is not ready. Check device and paper.");
+        //     Log.e(TAG, "Error printing: printer is not printable");
 
-            try {
-                printer.disconnect();
-                printerConnected = false;
-            }
-            catch (Epos2Exception ex) {
-                callbackContext.error("Error disconnecting");
-                Log.e(TAG, "Error disconnecting", ex);
-            }
-            return;
-        }
+        //     try {
+        //         printer.disconnect();
+        //         printerConnected = false;
+        //     }
+        //     catch (Epos2Exception ex) {
+        //         callbackContext.error("Error disconnecting");
+        //         Log.e(TAG, "Error disconnecting", ex);
+        //     }
+        //     return;
+        // }
 
         try {
-            printer.addFeedLine(3);
+            printer.addFeedLine(1);
             printer.addCut(Printer.CUT_FEED);
 
             printer.sendData(Printer.PARAM_DEFAULT);
