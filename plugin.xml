@@ -33,6 +33,7 @@
       </config-file>
 
       <source-file src="src/android/epos2Plugin.java" target-dir="src/com/cordova/plugin" />
+      <source-file src="src/android/strings.xml" target-dir="res/values" />
 
       <!-- libs 
       <source-file src="src/android/libs/arm64-v8a/libepos2.so" target-dir="libs/arm64-v8a/" />
