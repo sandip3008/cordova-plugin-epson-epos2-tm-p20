@@ -305,18 +305,14 @@ public class epos2Plugin extends CordovaPlugin {
             printer.endTransaction();
         }
         catch (Epos2Exception e) {
-            callbackContext.error("Error 0x00020: Ending transaction failed: " + e.getErrorStatus());
             Log.e(TAG, "Error ending transaction: " + e.getErrorStatus(), e);
-            return;
         }
 
         try {
             printer.disconnect();
         }
         catch (Epos2Exception e) {
-            callbackContext.error("Error 0x00021: Disconnecting printer failed: " + e.getErrorStatus());
             Log.e(TAG, "Error disconnecting printer: " + e.getErrorStatus(), e);
-            return;
         }
 
         printer.clearCommandBuffer();
