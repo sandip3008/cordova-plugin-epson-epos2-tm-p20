@@ -212,8 +212,6 @@ static NSDictionary *levelMap;
 
 -(void)connectPrinter:(CDVInvokedUrlCommand *)command
 {
-    [self->printer disconnect];
-    [self finalizeObject];
     NSString *target = [command.arguments objectAtIndex:0];
     int typeEnum = -1;
     
@@ -228,7 +226,7 @@ static NSDictionary *levelMap;
     }
     
     int result = EPOS2_SUCCESS;
-    // printerSeries = EPOS2_TM_M30;
+    printerSeries = EPOS2_TM_M30;
     
     // select BT device from accessory list
     // if ([target length] == 0) {
