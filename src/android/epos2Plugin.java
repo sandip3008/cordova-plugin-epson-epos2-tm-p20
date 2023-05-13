@@ -620,6 +620,9 @@ public class epos2Plugin extends CordovaPlugin {
 
             printer.addImage(image, 0, 0, image.getWidth(), image.getHeight(), Printer.COLOR_1, printMode, halfTone, Printer.PARAM_DEFAULT, Printer.COMPRESS_AUTO);
 
+            printer.addFeedLine(1);
+            printer.addCut(Printer.CUT_FEED);
+
             callbackContext.sendPluginResult(new PluginResult(Status.OK, true));
         } catch (IllegalArgumentException e) {
             callbackContext.error("Error 0x00040: Failed to convert image data");
