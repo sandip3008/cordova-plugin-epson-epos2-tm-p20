@@ -243,11 +243,11 @@ public class epos2Plugin extends CordovaPlugin {
         }
 
         // check for existing connection
-        if (printer != null && printerConnected && !printerTarget.equals(target)) {
-            callbackContext.error("Error 0x00011: Printer already connected");
-            Log.w(TAG, "Printer already connected");
-            return;
-        }
+//        if (printer != null && printerConnected && !printerTarget.equals(target)) {
+//            callbackContext.error("Error 0x00011: Printer already connected");
+//            Log.w(TAG, "Printer already connected");
+//            return;
+//        }
 
         printerTarget = target;
 
@@ -306,6 +306,7 @@ public class epos2Plugin extends CordovaPlugin {
         }
         catch (Epos2Exception e) {
             Log.e(TAG, "Error ending transaction: " + e.getErrorStatus(), e);
+          e.printStackTrace();
         }
 
         try {
@@ -313,12 +314,18 @@ public class epos2Plugin extends CordovaPlugin {
         }
         catch (Epos2Exception e) {
             Log.e(TAG, "Error disconnecting printer: " + e.getErrorStatus(), e);
+          e.printStackTrace();
         }
 
-        printer.clearCommandBuffer();
-        printer.setReceiveEventListener(null);
-        printerConnected = false;
-        printer = null;
+        try {
+          printer.clearCommandBuffer();
+          printer.setReceiveEventListener(null);
+          printerConnected = false;
+          printer = null;
+        } catch (Exception e) {
+         e.printStackTrace();
+        }
+
 
         PluginResult result = new PluginResult(Status.OK, true);
         callbackContext.sendPluginResult(result);
