@@ -137,7 +137,7 @@ public class epos2Plugin extends CordovaPlugin {
     private int printerSeries = Printer.TM_P20;
     private boolean printerConnected = false;
     // use for other language
-    private int printerLang = Printer.MODEL_TAIWAN;
+    private int printerLang = Printer.MODEL_ANK;
     private int textLanguage = Printer.LANG_ZH_TW;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -262,7 +262,7 @@ public class epos2Plugin extends CordovaPlugin {
             return true;
         }
 
-        Log.d(TAG, "_connectPrinter() to " + printerTarget);
+      Log.d(TAG, "_connectPrinter() to " + printerTarget);
 
         try {
             printer = new Printer(printerSeries, printerLang, webView.getContext());
@@ -746,7 +746,7 @@ public class epos2Plugin extends CordovaPlugin {
     private ReceiveListener receiveListener = new ReceiveListener() {
         @Override
         public void onPtrReceive(final Printer printer, final int code, final PrinterStatusInfo status, final String printJobId) {
-            Log.d(TAG, String.format("onPtrReceive; code : %d, status: %d, printJobId: %s", code, status.getErrorStatus(), printJobId));
+          Log.e(TAG, String.format("onPtrReceive; code : %d, status: %d, printJobId: %s", code, status.getErrorStatus(), printJobId));
 
             // send callback for sendData command
             if (sendDataCallbackContext != null) {
@@ -758,6 +758,14 @@ public class epos2Plugin extends CordovaPlugin {
                 }
                 sendDataCallbackContext = null;
             }
+
+          new Thread(new Runnable() {
+            @Override
+            public void run() {
+              disconnectPrinter();
+            }
+          }).start();
+            printerConnected = false;
         }
     };
 
