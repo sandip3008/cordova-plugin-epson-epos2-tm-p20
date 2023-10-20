@@ -1,6 +1,6 @@
 epsonepos2tmp20
 ====================
-Cordova plugin for Epson ePOS SDK(v2.6.0) for iOS and Android.
+Cordova plugin for Epson ePOS SDK(v2.27.0) (20 oct 2023) for iOS and Android.
 
 Integrates the Epson ePOS2 SDK for iOS and Android with a
 limited set of functions to discover and connect ePOS printers
@@ -27,7 +27,7 @@ functions and their arguments. All API functions are asynchronous and return a
 ### Printer Discovery
 
 #### .startDiscover(discoverCallback)
-This will search for supported printers connected to your mobiel device
+This will search for supported printers connected to your mobile device
 via Bluetooth or available in local area network (LAN)
 
 ```js
