@@ -693,8 +693,14 @@ static NSDictionary *levelMap;
             NSLog(@"[epos2] Error in Epos2Printer.addCut(): %d", result);
             return;
         }
-        
-        result = [self->printer sendData:EPOS2_PARAM_DEFAULT];
+        result = [printer connect:printerTarget timeout:EPOS2_PARAM_DEFAULT];
+        if (result != EPOS2_SUCCESS) {
+            NSLog(@"[epos2] Error in Epos2Printer.connect(): %d", result);
+            return NO;
+        }
+        else {
+           result = [self->printer sendData:EPOS2_PARAM_DEFAULT];
+        }
         if (result != EPOS2_SUCCESS) {
             [printer clearCommandBuffer];
             [self->printer disconnect];
